@@ -1,0 +1,24 @@
+[project]
+name = "voice-agent"
+version = "0.1.0"
+description = "A voice-enabled AI assistant with real-time speech-to-text, text-to-speech, and a Textual UI."
+readme = "README.md"
+authors = [
+    { name = "MuhammadAbdullah95", email = "ma2404374@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "google-genai>=2.6.0",
+    "numpy>=2.3.1",
+    "openai-agents[voice]>=0.1.0",
+    "python-dotenv>=1.1.1",
+    "sounddevice>=0.5.2",
+    "textual>=3.7.0",
+]
+
+[project.scripts]
+voice-agent = "voice_agent:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
