@@ -60,9 +60,9 @@ Run the web version:
 streamlit run streamlit_app.py
 ```
 
-## Live Deployment From GitHub
+## Live Deployment Link
 
-GitHub Pages cannot run this project because it is a Python application. This repository now includes a Streamlit app that can be deployed directly from GitHub and exposed with a public live link.
+hamza-va.streamlit.app
 
 ### Deploy on Streamlit Community Cloud
 
