@@ -2,6 +2,10 @@
 
 Voice Agent is a Python-based AI assistant with both a terminal UI and a browser app. It uses the OpenAI Agents SDK for workflow orchestration and Gemini-compatible models for speech-to-text, text generation, and text-to-speech.
 
+## Live Demo
+
+👉 https://hamza-va.streamlit.app
+
 ## Features
 
 - Real-time speech-to-text from microphone audio
@@ -59,10 +63,6 @@ Run the web version:
 ```bash
 streamlit run streamlit_app.py
 ```
-
-## Live Demo
-
-👉 https://hamza-va.streamlit.app
 
 ### Deploy on Streamlit Community Cloud
 
