@@ -74,6 +74,13 @@ def handle_prompt(prompt: str) -> None:
     )
 
 
+def format_exception_message(exc: Exception) -> str:
+    message = str(exc).strip()
+    if message:
+        return message
+    return f"{type(exc).__name__} occurred while calling the model."
+
+
 st.set_page_config(
     page_title="Voice Agent Live",
     page_icon="🎙️",
@@ -98,12 +105,17 @@ render_history()
 
 audio_prompt = st.audio_input("Speak to the assistant")
 if audio_prompt is not None:
-    with st.spinner("Transcribing audio..."):
-        prompt = transcribe_audio(wav_bytes_to_numpy(audio_prompt.getvalue()))
-    if prompt:
-        handle_prompt(prompt)
+    try:
+        with st.spinner("Transcribing audio..."):
+            prompt = transcribe_audio(wav_bytes_to_numpy(audio_prompt.getvalue()))
+    except Exception as exc:
+        st.error(f"Audio transcription failed: {format_exception_message(exc)}")
+        st.info("You can still use the text box below to chat while we troubleshoot audio input.")
     else:
-        st.warning("No speech was detected in the uploaded audio.")
+        if prompt:
+            handle_prompt(prompt)
+        else:
+            st.warning("No speech was detected in the uploaded audio.")
 
 text_prompt = st.chat_input("Type a message")
 if text_prompt:
