@@ -60,9 +60,9 @@ Run the web version:
 streamlit run streamlit_app.py
 ```
 
-## Live Deployment Link
+## Live Demo
 
-hamza-va.streamlit.app
+👉 https://hamza-va.streamlit.app
 
 ### Deploy on Streamlit Community Cloud
 
