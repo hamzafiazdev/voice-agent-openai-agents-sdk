@@ -25,6 +25,10 @@ def _pcm_to_wav_bytes(audio_buffer: np.ndarray) -> bytes:
     return wav_buffer.getvalue()
 
 
+def audio_buffer_to_wav_bytes(audio_buffer: np.ndarray) -> bytes:
+    return _pcm_to_wav_bytes(audio_buffer)
+
+
 def transcribe_audio(audio_buffer: np.ndarray) -> str:
     wav_bytes = _pcm_to_wav_bytes(audio_buffer)
     response = _client.models.generate_content(

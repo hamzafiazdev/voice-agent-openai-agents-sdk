@@ -1,93 +1,82 @@
 # Voice Agent
 
-**Short description:** A voice-enabled AI assistant that lets you speak naturally and receive spoken responses in a terminal UI. It combines real-time speech recognition, text-to-speech, and a customizable multi-agent workflow.
-
-**Long description:** This project is a Python-based voice assistant built with the OpenAI Agents SDK, Textual, and Gemini-backed speech models. It records microphone input, converts speech to text, passes the conversation through a workflow, and returns audio responses in real time. The repository includes a starter workflow in `agent1.py`, a reusable package entrypoint in `src/voice_agent/__init__.py`, and a `main.py` application that launches the UI.
+Voice Agent is a Python-based AI assistant with both a terminal UI and a browser app. It uses the OpenAI Agents SDK for workflow orchestration and Gemini-compatible models for speech-to-text, text generation, and text-to-speech.
 
 ## Features
 
-- Real-time microphone recording and speech-to-text conversion
-- Text-to-speech audio playback for assistant responses
-- A customizable workflow in `agent1.py`
-- A polished terminal UI built with Textual
-- Environment-based API key configuration using `.env`
+- Real-time speech-to-text from microphone audio
+- Text-to-speech playback for assistant replies
+- Multi-agent workflow support through `agent1.py`
+- Terminal UI built with Textual
+- Browser app built with Streamlit for live deployment
+- Environment-based configuration with `.env`
 
 ## Project Structure
 
-- `main.py` — launches the Textual app and voice pipeline
-- `agent1.py` — example workflow and agent logic
-- `src/voice_agent/__init__.py` — package entrypoint callable via the `voice-agent` script
-- `pyproject.toml` — Python package metadata and dependencies
+- `main.py` launches the Textual desktop app
+- `streamlit_app.py` launches the web app
+- `agent1.py` exposes the starter workflow
+- `src/voice_agent/app.py` contains the terminal application
+- `src/voice_agent/workflow.py` contains the agent workflow
+- `src/voice_agent/gemini_audio.py` contains speech helpers
 
 ## Requirements
 
 - Python 3.11+
-- A Google/OpenAI-compatible API key for Gemini models
-- Microphone access for recording input
+- A valid `GOOGLE_API_KEY`
 
-## Installation
+## Local Setup
 
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/<your-username>/voice-agent-openai-agents-sdk.git
-   cd voice-agent-openai-agents-sdk
-   ```
-
+1. Clone the repository.
 2. Install dependencies:
 
-   ```bash
-   pip install -e .
-   ```
+```bash
+pip install -e .
+```
 
-3. Create a `.env` file from the example and add your API key:
+3. Create a `.env` file:
 
-   ```bash
-   cp .env.example .env
-   ```
+```env
+GOOGLE_API_KEY=your_api_key_here
+```
 
-   Then edit `.env`:
+## Run Locally
 
-   ```env
-   GOOGLE_API_KEY=your_api_key_here
-   ```
-
-## Usage
-
-Run the app from the repository root:
+Run the terminal version:
 
 ```bash
 python main.py
 ```
 
-Or use the installed console script after packaging:
+Or:
 
 ```bash
 voice-agent
 ```
 
-### Controls
+Run the web version:
 
-- `K` — start or stop recording
-- `Q` — quit the application
+```bash
+streamlit run streamlit_app.py
+```
 
-## Configuration
+## Live Deployment From GitHub
 
-The app uses Gemini models configured in `main.py`:
+GitHub Pages cannot run this project because it is a Python application. This repository now includes a Streamlit app that can be deployed directly from GitHub and exposed with a public live link.
 
-- STT model: `gemini-2.5-flash`
-- TTS model: `gemini-2.5-flash-preview-tts`
-- Chat model: `gemini-2.5-flash`
+### Deploy on Streamlit Community Cloud
 
-You can customize the workflow, tools, and agent behavior in `agent1.py`.
+1. Push the latest code to your GitHub repository.
+2. Open `https://share.streamlit.io/`.
+3. Click to deploy a new app from your GitHub repo.
+4. Select the repository and branch.
+5. Set the main file path to `streamlit_app.py`.
+6. Add a secret named `GOOGLE_API_KEY` in the app settings.
+7. Deploy.
 
-## Troubleshooting
+Once deployment finishes, Streamlit will generate your public live URL.
 
-- Make sure your microphone is enabled and available to the system.
-- Verify that `GOOGLE_API_KEY` is set correctly in `.env`.
-- If the `voice-agent` script does not resolve, reinstall the package with `pip install -e .`.
+## Notes
 
-## Credits
-
-- Built with [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/)
-- UI powered by [Textual](https://textual.textualize.io/)
+- The terminal app is best for local microphone capture and speaker playback.
+- The Streamlit app supports typed chat and browser audio input, making it suitable for public deployment.

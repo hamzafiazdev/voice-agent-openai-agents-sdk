@@ -13,6 +13,7 @@ dependencies = [
     "openai-agents[voice]>=0.1.0",
     "python-dotenv>=1.1.1",
     "sounddevice>=0.5.2",
+    "streamlit>=1.45.1",
     "textual>=3.7.0",
 ]
 
